@@ -1,0 +1,10 @@
+flask
+regex
+nltk
+requests
+beautifulsoup4
+pandas
+numpy
+matplotlib
+pyspellchecker
+scikit-learn

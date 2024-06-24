@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='styles/searchcss.css') }}"
+    />
+    <style>
+      body {
+        background-color: #f4f4f4; /* Warna latar belakang abu-abu muda */
+        font-family: "Arial", sans-serif; /* Font default */
+        color: #333; /* Warna teks */
+      }
+
+      .filter {
+        background: #fff; /* Warna latar belakang putih */
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan */
+        margin-bottom: 30px;
+      }
+
+      .form-group label {
+        margin-top: 10px;
+        font-weight: bold; /* Teks label lebih tebal */
+      }
+
+      .form-control {
+        border-radius: 5px; /* Sudut input lebih bulat */
+      }
+
+      .btn {
+        border-radius: 5px; /* Sudut tombol lebih bulat */
+        margin-right: 5px;
+      }
+
+      .btn-primary {
+        background-color: #007bff; /* Warna biru primer */
+        border: none; /* Menghilangkan border tombol */
+      }
+
+      .btn-success {
+        background-color: #28a745; /* Warna hijau sukses */
+        border: none;
+      }
+
+      .btn-info {
+        background-color: #17a2b8; /* Warna biru info */
+        border: none;
+      }
+
+      .btn-warning {
+        background-color: #ffc107; /* Warna kuning warning */
+        border: none;
+      }
+
+      /* Untuk membuat tombol-tombol document-wise berada di baris yang sama */
+      .example-form-group .btn-warning {
+        display: inline-block;
+        margin-right: 5px;
+      }
+      body {
+        background-color: darkslategrey;
+      }
+      .form-group label {
+        margin-top: 10px;
+      }
+
+      .filter {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="filter">
+        <form
+          class="example-form-group"
+          action="askquery?query=murder&"
+          method="get"
+        >
+          <div class="form-group">
+            <label for="query">Query</label>
+            <input
+              type="text"
+              class="form-control"
+              id="query"
+              placeholder="Query Search.."
+              name="query"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input
+              type="text"
+              class="form-control"
+              id="date"
+              placeholder="Search By Date.."
+              name="date"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="appeal_no">Appeal Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="appeal_no"
+              placeholder="Search By Appeal Number.."
+              name="appeal_no"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="appellate">Appellate</label>
+            <input
+              type="text"
+              class="form-control"
+              id="appellate"
+              placeholder="Search By Appellate.."
+              name="appellate"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <i class="fa fa-search"></i> Search
+          </button>
+        </form>
+
+        <form class="example form-group" action="download?" method="get">
+          <div class="form-group">
+            <label for="doc_download">Download A File</label>
+            <input
+              type="text"
+              class="form-control"
+              id="doc_download"
+              placeholder="Enter name of doc to download.."
+              name="doc"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-success">Download</button>
+        </form>
+
+        <form class="example form-group" action="alldocs" method="get">
+          <button type="submit" class="btn btn-info">See all docs</button>
+        </form>
+
+        <form class="example form-group" action="docwise?" method="get">
+          <div class="form-group">
+            <label for="doc_search">Search document-wise</label>
+            <input
+              type="text"
+              class="form-control"
+              id="doc_search"
+              placeholder="Enter name of document.."
+              name="doc"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-warning" name="judgement">
+            Judgement
+          </button>
+          <button type="submit" class="btn btn-warning" name="penalCode">
+            Penal Code
+          </button>
+          <button type="submit" class="btn btn-warning" name="date">
+            Date
+          </button>
+          <button type="submit" class="btn btn-warning" name="appellate">
+            Appellate
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if needed) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Contoh JavaScript untuk menambahkan efek hover pada tombol
+      $(document).ready(function () {
+        $(".btn").hover(
+          function () {
+            $(this).css("background-color", "darken(this.backgroundColor)"); // Menggelapkan warna latar belakang saat dihover
+          },
+          function () {
+            $(this).css("background-color", ""); // Kembalikan warna latar belakang default saat hover keluar
+          }
+        );
+      });
+    </script>
+  </body>
+</html>
